@@ -94,7 +94,6 @@ public class PanelEste extends JPanel implements ActionListener
         }
         else if (e.getActionCommand( ).equals( "Reiniciar" ))
         {
-        	System.out.println("a");
         	principal.reiniciar( );
         }
 		

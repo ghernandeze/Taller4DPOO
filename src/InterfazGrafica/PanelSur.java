@@ -16,6 +16,7 @@ public class PanelSur extends JPanel
 	private VentanaPrincipal principal;
 	private JLabel labelContador;
 	private int contadorClics = 0;
+	private JLabel lblNomJug;
 	
 	public PanelSur(VentanaPrincipal pPrincipal)
 	{
@@ -40,11 +41,13 @@ public class PanelSur extends JPanel
 		lblJugador.setFont(font1);
 		add(lblJugador);
 		
-		lblRelleno= new JLabel(" ");
-		Font font3 = new Font(lblRelleno.getFont().getName(), Font.BOLD, 18); 
-		lblRelleno.setFont(font3);
+		lblNomJug= new JLabel(" ");
+		Font font3 = new Font(lblNomJug.getFont().getName(), Font.BOLD, 18); 
+		lblNomJug.setFont(font3);
+		add(lblNomJug);
+		       
+		lblRelleno = new JLabel(" ");
 		add(lblRelleno);
-		        				
 	}
 	
 	public void setJugadas(String jugadas)
@@ -55,13 +58,12 @@ public class PanelSur extends JPanel
 		
 	public void setNombre(String nombre)
 	{
-		lblRelleno.setText(nombre);
+		lblNomJug.setText(nombre);
 		
 	}
 	
 	public void cambiarJugadas(String valor)
 	{
-		System.out.println(valor);
 		labelContador.setText(valor);
 	}
 	

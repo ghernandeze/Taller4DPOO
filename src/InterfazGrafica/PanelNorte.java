@@ -15,7 +15,7 @@ public class PanelNorte extends JPanel implements ActionListener {
     private JRadioButton dificilButton;
     private JComboBox<String> lblComboBox;
     private int tamanioTablero;
-    private String[] comboBoxOptions = {"5x5", "8x8", "11x11"};
+    private String[] comboBoxOptions = {"5x5", "7x7", "9x9"};
     private int dificultad;
     private boolean eFacil;
     private boolean eMedia;
@@ -96,14 +96,14 @@ public class PanelNorte extends JPanel implements ActionListener {
             {
             	setTamanioTablero(5);
             } 
-            else if (selectedSize.equals("8x8")) 
+            else if (selectedSize.equals("7x7")) 
             {
-            	setTamanioTablero(8);
+            	setTamanioTablero(7);
             	
             } 
-            else if (selectedSize.equals("11x11")) 
+            else if (selectedSize.equals("9x9")) 
             {
-            	setTamanioTablero(11);
+            	setTamanioTablero(9);
             	
             }
         }
@@ -134,21 +134,21 @@ public class PanelNorte extends JPanel implements ActionListener {
 	        eFacil = true;
 	        eMedia = false;
 	        eDificil = false;
-	        setDificultad(1);
+	        setDificultad(3);
 	    }
 	    else if (btn.equals("difMedia")) 
 	    {
 	    	eFacil = false;
 	    	eMedia = true;
 	    	eDificil = false;
-	        setDificultad(3);
+	        setDificultad(9);
 	    }
 	    else 
 	    {
 	    	eFacil = false;
 	        eMedia = false;
 	        eDificil = true;
-	        setDificultad(7);
+	        setDificultad(15);
 	        
 	    }
 	}

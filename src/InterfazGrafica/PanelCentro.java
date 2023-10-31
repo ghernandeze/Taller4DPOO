@@ -66,7 +66,11 @@ public class PanelCentro extends JPanel implements MouseListener
         int jugadas = modelo.darJugadas();
         principal.setJugadas(jugadas);
         repaint();
-        
+        boolean ganar = modelo.tableroIluminado();
+        if (ganar == true)
+        	{
+        	principal.ganador();
+        	};
     }
 
     private int[] convertirCoordenadasACasilla(int x, int y)
@@ -86,9 +90,9 @@ public class PanelCentro extends JPanel implements MouseListener
     	return tablero;
     }
     
-    public boolean[][] reiniciarTablero(boolean[][] tab)
+    public boolean[][] reiniciarCentro(boolean[][] pantalla)
     {
-    	tablero = tab;
+    	tablero = pantalla;
     	return tablero;
     }
     

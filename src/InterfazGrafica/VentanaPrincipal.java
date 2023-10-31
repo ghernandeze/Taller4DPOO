@@ -70,7 +70,7 @@ public class VentanaPrincipal extends JFrame
 	
 	public static void main(String[]args)
 	{
-		VentanaPrincipal ventana = new VentanaPrincipal(5,1, true, false, false);
+		VentanaPrincipal ventana = new VentanaPrincipal(5,3, true, false, false);
 		ventana.setLocationRelativeTo(null);
 		ventana.setVisible(true);
 		
@@ -93,10 +93,10 @@ public class VentanaPrincipal extends JFrame
 		try 
 		{
 			tablero.reiniciar();
-		    boolean[][] tab = panelCentro.reiniciarTablero(panelCentro.getTablero());
+		    boolean[][] pantalla = panelCentro.reiniciarCentro(panelCentro.getTablero());
 		    panelCentro.setVisible(false);
-		    panelCentro = new PanelCentro(tab,tablero,this);
-		    changeValue(0);
+		    panelCentro = new PanelCentro(pantalla,tablero,this);
+		    cambiarValor(0);
 		    this.add(panelCentro,BorderLayout.CENTER);
 			
 	    } 
@@ -105,7 +105,7 @@ public class VentanaPrincipal extends JFrame
 	    }
 	}
 	
-	public void changeValue(int valor) 
+	public void cambiarValor(int valor) 
 	{
 	    panelSur.cambiarJugadas(Integer.toString(valor));
 	}
@@ -119,6 +119,11 @@ public class VentanaPrincipal extends JFrame
 				
 	}
 	
+	public void ganador()
+	{
+		JOptionPane.showMessageDialog(this, "GANASTE SUUUUUUUUU", "LightsOut", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	public int getTamanioTablero() 
 	{
 	    return panelNorte.getTamanio();
@@ -128,13 +133,7 @@ public class VentanaPrincipal extends JFrame
 	{
 	    return panelNorte.getDificultad();
 	}
-	
-	public void cambiarDificultad(int dificultad)
-	{
-		System.out.println("dificultad cambiada");
-		tablero.desordenar(dificultad);
-	}
-	
+		
 	public boolean[] getBtnEstados() 
 	{
 	return panelNorte.getBtnEstados();	
@@ -144,7 +143,7 @@ public class VentanaPrincipal extends JFrame
     {
     	return panelCentro;
     }
-		
+	
 	public int getJugadas()
 	{
 		return tablero.darJugadas();
