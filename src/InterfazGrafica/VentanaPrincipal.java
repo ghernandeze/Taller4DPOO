@@ -67,7 +67,6 @@ public class VentanaPrincipal extends JFrame
 		
 	}
 	
-	
 	public static void main(String[]args)
 	{
 		VentanaPrincipal ventana = new VentanaPrincipal(5,3, true, false, false);
