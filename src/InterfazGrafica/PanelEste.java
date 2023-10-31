@@ -95,15 +95,15 @@ public class PanelEste extends JPanel implements ActionListener
         else if (e.getActionCommand( ).equals( "Reiniciar" ))
         {
         	System.out.println("a");
+        	principal.reiniciar( );
         }
 		
 		  else if (e.getActionCommand( ).equals( "Cambiar" ))
 	      {
-	          JOptionPane.showMessageDialog( principal, "Que jugador " );
+	          String dimitri = JOptionPane.showInputDialog( principal, "Escriba su nombre: " );
+	          principal.setNombre(dimitri);
 	      }
 		
 	}
-        
-	
-	
+        	
 }

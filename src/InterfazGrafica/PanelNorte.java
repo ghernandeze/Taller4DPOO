@@ -77,11 +77,11 @@ public class PanelNorte extends JPanel implements ActionListener {
     {
         if (e.getSource() == facilButton) 
         {
-        	setBtn("f");
+        	setBtn("difFacil");
         } 
         else if (e.getSource() == medioButton) 
         {
-        	setBtn("m");
+        	setBtn("difMedia");
         } 
         else if (e.getSource() == dificilButton) 
         {
@@ -129,14 +129,14 @@ public class PanelNorte extends JPanel implements ActionListener {
     
 	public void setBtn(String btn) 
 	{
-	    if (btn.equals("f"))
+	    if (btn.equals("difFacil"))
 	    {
 	        eFacil = true;
 	        eMedia = false;
 	        eDificil = false;
 	        setDificultad(1);
 	    }
-	    else if (btn.equals("m")) 
+	    else if (btn.equals("difMedia")) 
 	    {
 	    	eFacil = false;
 	    	eMedia = true;
@@ -149,8 +149,8 @@ public class PanelNorte extends JPanel implements ActionListener {
 	        eMedia = false;
 	        eDificil = true;
 	        setDificultad(7);
+	        
 	    }
-
 	}
 	
 	public boolean[] getBtnEstados() 

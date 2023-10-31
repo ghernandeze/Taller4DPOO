@@ -140,22 +140,27 @@ public class Tablero
 	 */
 	public void jugar(int fila, int columna)
 	{
-		int tam = tablero.length;
+        tablero[fila][columna] = !tablero[fila][columna];
+        int[] filasVecinas = {fila - 1, fila + 1};
+        int[] columnasVecinas = {columna - 1, columna + 1};
 
-		for (int df = -1; df < 2; df++)
-		{
-			for (int dc = -1; dc < 2; dc++)
-			{
-				int f = fila + df;
-				int c = columna + dc;
-				if (f >= 0 && f < tam && c >= 0 && c < tam)
-				{
-					tablero[f][c] = !tablero[f][c];
-				}
-			}
-		}
-		jugadas++;
-	}
+        for (int i : filasVecinas)
+        {
+            if (i >= 0 && i < tablero.length)
+            {
+                tablero[i][columna] = !tablero[i][columna];
+            }
+        }
+
+        for (int j : columnasVecinas)
+        {
+            if (j >= 0 && j < tablero.length)
+            {
+                tablero[fila][j] = !tablero[fila][j];
+            }
+        }
+        jugadas++;
+    }
 
 	/**
 	 * Informa si todas las casillas del tablero están iluminadas

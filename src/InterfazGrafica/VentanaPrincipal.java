@@ -22,7 +22,7 @@ public class VentanaPrincipal extends JFrame
 	private PanelEste panelEste;
 	private PanelCentro panelCentro;
 	Top10 top10 = new Top10();
-	Tablero tablero;
+	private Tablero tablero;
 	
 	
 	public VentanaPrincipal(int tamanio, int dificultad, boolean estadoFacil, boolean estadoMedio, boolean estadoDificil) 
@@ -43,15 +43,15 @@ public class VentanaPrincipal extends JFrame
 		panelNorte.setBackground(Color.CYAN);
 		
 		if (estadoFacil) {
-            panelNorte.setBtn("f");
+            panelNorte.setBtn("difFacil");
         }
         else if(estadoMedio)
         {
-            panelNorte.setBtn("m");
+            panelNorte.setBtn("difMedia");
         }
         else 
         {
-            panelNorte.setBtn("sdsfd");
+            panelNorte.setBtn("defDiff");
         }
 		
 		panelEste = new PanelEste(this);
@@ -61,11 +61,10 @@ public class VentanaPrincipal extends JFrame
 		tablero = new Tablero( tamanio );
 		
 		tablero.desordenar(dificultad);
-		panelCentro = new PanelCentro(tablero.darTablero( ));
+		panelCentro = new PanelCentro(tablero.darTablero( ), tablero, this);
 		add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setBackground(Color.WHITE);
 		
-	
 	}
 	
 	
@@ -88,14 +87,27 @@ public class VentanaPrincipal extends JFrame
 	    }
 	}
 	
-	public void nuevoJuego()
-	{
-		try {
+	public void reiniciar()
+    {
+		
+		try 
+		{
+			tablero.reiniciar();
+		    boolean[][] tab = panelCentro.reiniciarTablero(panelCentro.getTablero());
+		    panelCentro.setVisible(false);
+		    panelCentro = new PanelCentro(tab,tablero,this);
+		    changeValue(0);
+		    this.add(panelCentro,BorderLayout.CENTER);
 			
-				        
-	    } catch (Exception e) {
-	        JOptionPane.showMessageDialog(this, "No se pudo reiniciar", "Error", JOptionPane.ERROR_MESSAGE);
+	    } 
+		catch (Exception e) {
+	        JOptionPane.showMessageDialog(this, "Error reiniciando el programa.", "Error", JOptionPane.ERROR_MESSAGE);
 	    }
+	}
+	
+	public void changeValue(int valor) 
+	{
+	    panelSur.cambiarJugadas(Integer.toString(valor));
 	}
 	
 	public void cambiarTamanio(int t, int dificultad, boolean estadoFacil, boolean estadoMedio, boolean estadoDificil)
@@ -128,4 +140,25 @@ public class VentanaPrincipal extends JFrame
 	return panelNorte.getBtnEstados();	
 	}
 	
+	public PanelCentro getPanelCentro()
+    {
+    	return panelCentro;
+    }
+		
+	public int getJugadas()
+	{
+		return tablero.darJugadas();
+	}
+	
+	public void setJugadas(int jugadas)
+	{
+		String stringRespuesta = Integer.toString(jugadas); 
+		panelSur.setJugadas(stringRespuesta);
+		
+	}
+		
+	public void setNombre(String nombre)
+	{
+		panelSur.setNombre(nombre);
+	}
 }

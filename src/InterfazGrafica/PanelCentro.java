@@ -17,12 +17,15 @@ public class PanelCentro extends JPanel implements MouseListener
     private boolean[][] tablero;
     private int ultima_fila;
     private int ultima_columna;
+    private Tablero modelo;
 
-    public PanelCentro(boolean[][] tableroP)
+    public PanelCentro(boolean[][] tableroP, Tablero modelo, VentanaPrincipal principal )
     {
         tablero = tableroP;
         add(new JLabel("                                   "));
         addMouseListener(this);
+        this.modelo = modelo;
+        this.principal = principal;
     }
 
     public void paintComponent(Graphics g)
@@ -55,11 +58,15 @@ public class PanelCentro extends JPanel implements MouseListener
 
     public void mousePressed(MouseEvent e)
     {
-        int click_x = e.getX();
+        
+    	int click_x = e.getX();
         int click_y = e.getY();
         int[] casilla = convertirCoordenadasACasilla(click_x, click_y);
-        cambiarColorYVecinos(casilla[0], casilla[1]);
+        modelo.jugar(casilla[0], casilla[1]);
+        int jugadas = modelo.darJugadas();
+        principal.setJugadas(jugadas);
         repaint();
+        
     }
 
     private int[] convertirCoordenadasACasilla(int x, int y)
@@ -73,51 +80,39 @@ public class PanelCentro extends JPanel implements MouseListener
         int columna = (int) (x / anchoCasilla);
         return new int[] { fila, columna };
     }
-
-    private void cambiarColorYVecinos(int fila, int columna)
+   
+    public boolean[][] getTablero()
     {
-        tablero[fila][columna] = !tablero[fila][columna];
-        int[] filasVecinas = {fila - 1, fila + 1};
-        int[] columnasVecinas = {columna - 1, columna + 1};
-
-        for (int i : filasVecinas)
-        {
-            if (i >= 0 && i < tablero.length)
-            {
-                tablero[i][columna] = !tablero[i][columna];
-            }
-        }
-
-        for (int j : columnasVecinas)
-        {
-            if (j >= 0 && j < tablero.length)
-            {
-                tablero[fila][j] = !tablero[fila][j];
-            }
-        }
+    	return tablero;
     }
-
+    
+    public boolean[][] reiniciarTablero(boolean[][] tab)
+    {
+    	tablero = tab;
+    	return tablero;
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e)
     {
-        // No necesario en este caso
+        
     }
 
     @Override
     public void mouseReleased(MouseEvent e)
     {
-        // No necesario en este caso
+        
     }
 
     @Override
     public void mouseEntered(MouseEvent e)
     {
-        // No necesario en este caso
+        
     }
 
     @Override
     public void mouseExited(MouseEvent e)
     {
-        // No necesario en este caso
+        
     }
 }
